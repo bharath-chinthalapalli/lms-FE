@@ -1,0 +1,25 @@
+<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="6" height="6" fill="#EBEBEB"/>
+<g id="Organizations" clip-path="url(#clip0_258_11777)">
+<rect width="1440" height="1024" transform="translate(-347 -490)" fill="#F9FAFF"/>
+<g id="Simple/Desktop">
+<g clip-path="url(#clip1_258_11777)">
+<rect x="-24" y="-382" width="1085" height="676" rx="8" fill="white"/>
+<g id="Column">
+<g id="Tables/Cell">
+<circle id="Dot" cx="3" cy="3" r="3" fill="#EF4444"/>
+</g>
+</g>
+</g>
+<rect x="-23.5" y="-381.5" width="1084" height="675" rx="7.5" stroke="#E5E7EB"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_258_11777">
+<rect width="1440" height="1024" fill="white" transform="translate(-347 -490)"/>
+</clipPath>
+<clipPath id="clip1_258_11777">
+<rect x="-24" y="-382" width="1085" height="676" rx="8" fill="white"/>
+</clipPath>
+</defs>
+</svg>

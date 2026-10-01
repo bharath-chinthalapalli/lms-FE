@@ -1,0 +1,280 @@
+<ng-template appPlaceholder></ng-template>
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="content">
+  <div class="flex items-end justify-between">
+    <app-heading-description [heading]="'Courses'" [description]="
+      'Groups help in creating and adding users to courses easy'">
+    </app-heading-description>
+    <div class="flex flex-row justify-end gap-4">
+      <div class="relative flex rounded">
+        <span class="absolute top-3 left-3">
+          <img [src]="_commonService.Images.SEARCH_ICON" alt="serach icons" />
+        </span>
+        <input type="search" id="search"
+          class="h-10 border border-gray-300 rounded-md py-2.5 pl-9 pr-4 placeholder:text-sm placeholder:text-r_color_secondary-500 placeholder:font-normal"
+          placeholder="Search" (input)="getSearchData($event)" />
+      </div>
+    </div>
+  </div>
+
+  <div class=" mt-6">
+    <div class="flex items-center gap-3">
+      <button type="button" (click)="goToCourses(_commonService.TextEnums.AVAILABLE_COURSES)" [ngClass]="
+        activeTab == _commonService.TextEnums.AVAILABLE_COURSES 
+          ? 'courses-active' : 'courses-in-active'">
+        Available Courses
+      </button>
+      <button type="button" (click)="goToCourses(_commonService.TextEnums.PURCHASED_COURSES)" [ngClass]="
+        activeTab == _commonService.TextEnums.PURCHASED_COURSES 
+          ? 'courses-active' : 'courses-in-active'">
+        Purchased Courses
+      </button>
+      <button type="button" (click)="goToCourses(_commonService.TextEnums.FAVORITE_COURSES)" [ngClass]="
+        activeTab == _commonService.TextEnums.FAVORITE_COURSES 
+        ? 'courses-active' : 'courses-in-active'">
+        Favorites
+      </button>
+    </div>
+
+  </div>
+
+  <div class="super-admin-cards ">
+
+    <ng-container>
+      <div *ngIf="activeTab === _commonService.TextEnums.AVAILABLE_COURSES"
+        class="super-admin-card commonCss grid grid-cols-3   gap-6">
+        <!-- <ng-container *ngFor="let cardData of availableCoursesArray">
+          <app-trending-courses
+            [image_url]="cardData.coverImage"
+            [title]="cardData.title"
+            [description]="cardData.description"
+            [tags]="cardData.tag"
+            [availableTill]="cardData.availableTill"
+            >
+          </app-trending-courses>
+        </ng-container> -->
+        <div *ngFor="let item of availableCoursesArray"
+          class="bg-white flex flex-col rounded-b-lg shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] relative lms-super-admin-card card mt-4">
+          <div class="absolute z-20 right-4 top-4 cursor-pointer  lms-threedots">
+            <!-- <app-three-dots-menu [threeDotsMenu]="threeDotsMenu"></app-three-dots-menu> -->
+            <ng-container>
+              <div *ngIf="item.isFavorite == true">
+                <img (click)="activeInactiveItme(item.id)" [src]="_commonService.Images.RATING_ACTIVE_ICON"
+                  class="shadow-md" alt="">
+              </div>
+              <div *ngIf="item.isFavorite == false">
+                <img (click)="activeInactiveItme(item.id)" [src]="_commonService.Images.RATING_ICON" class="shadow-md"
+                  alt="">
+              </div>
+            </ng-container>
+          </div>
+          <div>
+            <!-- <div class=" imageCard z-10 "></div> -->
+            <ng-container *ngFor="let item1 of item.fileData">
+              <div>
+                <img [src]="item1.coverImage" alt="main-img" class="w-full max-h-56 object-cover rounded-t-lg" />
+              </div>
+              <div *ngIf="!item1.coverImage">
+                <img [src]="_commonService.Images.CARD_MAIN_IMAGES" alt=""
+                  class="w-full max-h-56 object-cover rounded-t-lg">
+              </div>
+            </ng-container>
+          </div>
+          <div class="py-3 px-4 flex flex-col gap-3">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col gap-2">
+                <p class="text-green-700 font-medium text-sm">
+                  {{item.category}}
+                </p>
+                <h1 class="text-xl font-semibold text-r_color_secondary-900">
+                  {{ item.tittle }}
+                </h1>
+                <p class="text-sm font-normal text-r_color_secondary-500">
+                  {{ item.description }}
+                </p>
+              </div>
+              <div>
+                <img (click)="navToCourseDetails()" [src]="_commonService.Images.OPEN_CARD" class="cursor-pointer"
+                  alt="">
+              </div>
+            </div>
+            <div class="flex items-center gap-3" *ngFor="let item2 of item.tag">
+              <div class="py-2 px-3 rounded text-r_color_secondary-700 text-sm font-medium bg-primary-color-50">
+                {{item2 == null ? 'N/A': item2}}
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <p class="text-sm font-normal text-r_color_secondary-500">
+                Available till:
+              </p>
+              <p class="text-base font-normal text-r_color_secondary-800">
+                {{item.availableTill}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="availableCoursesArray.length == 0" class="grid col-span-3">
+          <div class="mt-36">
+            <div>
+              <img [src]="_commonService.Images.NO_RECORDS" alt="" class="mx-auto justify-center">
+            </div>
+            <p class="text-center text-sm text-r_color_secondary-500 mt-4 font-normal">No records available</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="activeTab === _commonService.TextEnums.PURCHASED_COURSES">
+        <div class="flex flex-col gap-5 overflow-auto overflow-y-auto relative">
+          <table class="lms-table ">
+            <thead>
+              <tr>
+                <th *ngFor="let headTable of TableTheadArray" class="uppercase">
+                  {{headTable}}
+                </th>
+              </tr>
+            </thead>
+            <tbody *ngIf="purchasedCoursesArray.length > 0">
+              <tr *ngFor="let tableItem of purchasedCoursesArray">
+                <td class="!text-gray-900">{{tableItem.title |splitAndCapitalize}}</td>
+                <td>{{tableItem.category}}</td>
+                <td>{{tableItem.availableTill}}</td>
+                <td>{{tableItem.completedLicence}}/<span class="font-semibold">{{tableItem.totalLicence}}</span></td>
+                <td class="px-2 py-2 flex items-center w-fit relative">
+                  <button class="text-sm font-normal text-green-700 cursor-pointer"
+                    (click)="openEditActions(tableItem.id)">
+                    Assign
+                  </button>
+                  <div (clickOutside)="actionEditId = '' " *ngIf="actionEditId === tableItem.id" class="w-fit px-5 pr-6 py-3 border border-gray-400 bg-white z-10  rounded-md 
+                      absolute lg:top-12 xs:top-8 lg:left-0 xs:-left-10">
+                    <div class=" w-full flex item-center mr-2 mb-4
+                            gap-1 cursor-pointer" (click)="user(tableItem.id)">
+                      <img [src]="_commonService.Images.USER_ICON" alt="">
+                      <p class="mx-1">User</p>
+                    </div>
+
+                    <div class=" w-full flex item-center mr-2 gap-1 cursor-pointer" (click)="groupUser(tableItem.id)">
+                      <img [src]="_commonService.Images.USER_GROUP_ICON" alt="">
+                      <p class="mx-1 flex-wrap">Group </p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="purchasedCoursesArray.length > 0"
+            class="flex  items-center justify-between text-r_color_secondary-700 text-sm font-medium">
+            <div>
+              <p>Showing <span class="!font-semibold">{{offset * 1 + 1 }} </span>
+                to <span class="!font-semibold">{{offset + numberOfElements}}</span>
+                of <span class="!font-semibold"> {{totalElements}}</span> </p>
+            </div>
+            <app-paginator *ngIf="TableTheadArray.length > 0" [currentPage]="currentPage" [totalPages]="totalPages"
+              (pageChange)="onPageChange($event)">
+            </app-paginator>
+          </div>
+        </div>
+        <div *ngIf="purchasedCoursesArray.length == 0" class="grid col-span-3">
+          <div class="mt-36">
+            <div>
+              <img [src]="_commonService.Images.NO_RECORDS" alt="" class="mx-auto justify-center">
+            </div>
+            <p class="text-center text-sm text-r_color_secondary-500 mt-4 font-normal">No records available</p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="activeTab === _commonService.TextEnums.FAVORITE_COURSES"
+        class="super-admin-card commonCss grid grid-cols-3   gap-6">
+
+        <div *ngFor="let item1 of favoriteCoursesArray"
+          class="bg-white flex flex-col rounded-b-lg shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] relative lms-super-admin-card card mt-4">
+          <div *ngIf="favoriteCoursesArray.length > 0">
+            <div class="absolute z-20 right-4 top-4 cursor-pointer  lms-threedots">
+              <!-- <app-three-dots-menu [threeDotsMenu]="threeDotsMenu"></app-three-dots-menu> -->
+              <ng-container>
+                <div *ngIf="item1.isFavorite == true">
+                  <img (click)="activeInactiveItme(item1.id)" [src]="_commonService.Images.RATING_ACTIVE_ICON" alt="">
+                </div>
+                <div *ngIf="item1.isFavorite == false">
+                  <img [src]="_commonService.Images.RATING_ICON" alt="">
+                </div>
+              </ng-container>
+            </div>
+            <div>
+              <!-- <div class=" imageCard z-10 "></div> -->
+              <ng-container  *ngFor="let item11 of item1.fileData">
+                <div>
+                  <img [src]="item11.coverImage" alt="main-img" class="w-full max-h-56 object-cover rounded-t-lg" />
+                </div>
+                <div *ngIf="!item11.coverImage">
+                  <img [src]="_commonService.Images.CARD_MAIN_IMAGES" alt=""
+                    class="w-full max-h-56 object-cover rounded-t-lg">
+                </div>
+                <!-- <img [src]="_commonService.Images.CARD_MAIN_IMAGES" alt=""
+                class="w-full max-h-56 object-cover rounded-t-lg"> -->
+              </ng-container>
+            </div>
+            <div class="py-3 px-4 flex flex-col gap-3">
+              <div class="flex items-start justify-between">
+                <div class="flex flex-col gap-2">
+                  <p class="text-green-700 font-medium text-sm">
+                    {{item1.category}}
+                  </p>
+                  <h1 class="text-xl font-semibold text-r_color_secondary-900">
+                    {{ item1.tittle }}
+                  </h1>
+                  <p class="text-sm font-normal text-r_color_secondary-500">
+                    {{ item1.description }}
+                  </p>
+                </div>
+                <!-- <div class="flex flex-col gap-2">
+                <p class="text-sm font-normal text-r_color_secondary-500">
+                    Available till:
+                </p>
+                <p class="text-base font-normal text-r_color_secondary-800">
+                    {{ super_card_data?.available_till }}
+                </p>
+            </div> -->
+                <div>
+                  <img (click)="navToCourseDetails()" [src]="_commonService.Images.OPEN_CARD" class="cursor-pointer"
+                    alt="">
+                </div>
+              </div>
+              <div class="flex items-center gap-3" *ngFor="let item2 of item1.tag">
+                <div class="py-2 px-3 rounded text-r_color_secondary-700 text-sm font-medium bg-primary-color-50">
+                  {{item2 == null ? 'N/A': item2}}
+                </div>
+                <!-- <div class="py-2 px-3 rounded text-r_color_secondary-700 text-sm font-medium bg-r_color_orange-50">
+                Safety Procedure
+            </div> -->
+              </div>
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-normal text-r_color_secondary-500">
+                  Available till:
+                </p>
+                <p class="text-base font-normal text-r_color_secondary-800">
+                  {{item1.availableTill}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="favoriteCoursesArray.length == 0" class="grid col-span-3">
+          <div class="mt-36">
+            <div>
+              <img [src]="_commonService.Images.NO_RECORDS" alt="" class="mx-auto justify-center">
+            </div>
+            <p class="text-center text-sm text-r_color_secondary-500 mt-4 font-normal">No records available</p>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+  <!-- <app-assign-user
+   [getUserListForAssignArray]="getUserListForAssignArray">
+  </app-assign-user> -->
+
+
+</div>

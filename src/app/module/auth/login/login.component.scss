@@ -1,0 +1,15 @@
+.bg-img {
+  @apply bg-[url('src/assets/images/login-bg.svg')];
+}
+input::placeholder {
+  @apply font-normal text-base text-r_color_secondary-400;
+}
+label {
+  @apply font-semibold text-gray-700 text-base;
+}
+input {
+  @apply w-full h-12 bg-white rounded-md border border-gray-300 px-2;
+}
+span {
+  @apply text-r_color_secondary-500 text-base font-medium;
+}

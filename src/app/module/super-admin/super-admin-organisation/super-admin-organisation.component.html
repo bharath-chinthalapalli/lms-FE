@@ -1,0 +1,43 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="pt-4 pr-8">
+  <div class="flex items-center justify-between mb-8">
+    <app-heading-description
+      [heading]="'Organizations'"
+      [description]="
+        'Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.'
+      "
+    >
+    </app-heading-description>
+    <div class="flex items-center gap-4">
+      <app-button-icon
+        (click)="openAddorganisationPopup()"
+        [icon]="commonService.Images.ADD_PLUS_ICON"
+        [btn_text]="'Add Organization'"
+      ></app-button-icon>
+    </div>
+  </div>
+
+  <app-lms-table
+    [TableType]="commonService.TextEnums.SUPER_ADMIN_ORGANISATION"
+    [TableTheadArray]="organisationTableHeader"
+    [TableTBodyArray]="organisationArray"
+    [threeDotMenOption]="threeDotsMenuOption"
+  ></app-lms-table>
+
+  <div class="flex items-center justify-between text-r_color_secondary-700 text-sm font-medium">
+    <div>
+      <p>Showing <span class="!font-semibold">{{offset * 1 + 1 }} </span> 
+         to <span class="!font-semibold">{{offset + numberOfElements}}</span>
+         of  <span class="!font-semibold">  {{totalElements}}</span> </p>
+    </div>
+    
+    <div class="flex justify-end" *ngIf="organisationArray.length > 0" >
+      <app-paginator [currentPage]="currentPage" [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)">
+      </app-paginator>
+    </div>
+  </div>
+
+</div>
+<!-- *ngIf="organisationArray.length > 0"  -->

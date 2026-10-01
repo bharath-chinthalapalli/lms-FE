@@ -1,0 +1,100 @@
+<div class="generic_newoverlay !z-[9999999]">
+  <div
+    class="overflow-y-auto bg-gray-900/50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 mx-auto w-full md:inset-0 h-modal md:h-full"
+  >
+    <div
+      class="p-3.5 rounded-md relative transition-all w-auto pointer-events-none"
+    >
+      <div
+        class="border-none rounded-3xl relative flex flex-col mx-auto mt-[14rem] w-[25%] px-12 py-8 bg-white pointer-events-auto bg-clip-padding shadow-xl outline-none text-current"
+      >
+        <div *ngIf="type == _commonService.TextEnums.QUIZ_TEXT">
+          <div
+            class="modal-header flex-shrink-0 text-center p-2 border--200 rounded-t-md"
+          >
+            <p class="text-['#121D54'] text-xl font-bold">{{ message }}</p>
+          </div>
+          <div
+            class="modal-body relative text-base text-[#1E3491] font-medium text-center mt-3"
+          >
+            {{ description }}
+          </div>
+          <div
+            class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border--200 rounded-b-md space-x-4"
+          >
+            <button
+              type="button"
+              (click)="close()"
+              class="text-r_color_secondary-500 text-base font-semibold bg-white border border-gray-400 h-10 w-28 rounded-md"
+            >
+              {{ no }}
+            </button>
+            <button
+              type="button"
+              (click)="closePopUp()"
+              class="text-white text-base font-semibold bg-[#2441E7] h-10 w-28 rounded-md"
+            >
+              {{ yes }}
+            </button>
+          </div>
+        </div>
+
+        <div
+          *ngIf="type == 'Successful'"
+          class="flex flex-col items-center justify-center"
+        >
+          <img [src]="_commonService.Images.SUCCESS_ICON" alt="success icons" />
+          <p class="font-bold text-xl text-secondary-800 mt-3">
+            Congratulations
+          </p>
+          <p class="text-lg text-secondary-700 font-normal">
+            You have<span class="text-lg text-secondary-800 font-bold">
+              passed</span
+            >and you can proceed further
+          </p>
+          <button
+            type="button"
+            (click)="closePopUp()"
+            class="text-white text-base font-semibold bg-primary-color-600 w-36 text-center px-4 py-2 mt-9 rounded"
+          >
+            Next
+          </button>
+        </div>
+
+        <div *ngIf="type == _commonService.TextEnums.ACTIVE_INACTIVE_POPUP">
+          <div class="flex gap-4 items-start">
+            <img
+              [src]="_commonService.Images.INACTIVE_ICON_POPUP"
+              alt="inactive icons"
+            />
+
+            <div>
+              <p class="text-r_color_secondary-800 text-lg font-medium">
+                Inactive Course?
+              </p>
+              <p class="text-r_color_secondary-500 text-sm font-normal">
+                Are you sure you want to Inactive Bedok N2C11 Course? Subscribed
+                Organizations cannot see this course
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-end gap-4">
+            <button
+              type="button"
+              (click)="close()"
+              class="px-4 py-2 border rounded-md border-r_color_secondary-300 shadow-sm text-sm text-r_color_secondary-700 font-medium"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="px-4 py-2 border bg-r_color_red-600 rounded-md border-r_color_secondary-300 shadow-sm text-sm text-r_color_base font-medium"
+            >
+              Yes, Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

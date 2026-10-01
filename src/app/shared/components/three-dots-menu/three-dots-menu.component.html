@@ -1,0 +1,63 @@
+<div class="relative inline-block text-left">
+  <div>
+    <button type="button" (click)="toggleMenu()"
+      class="flex items-center rounded-full bg-transparent text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+      id="menu-button" aria-expanded="true" aria-haspopup="true">
+      <img [src]="commonService.Images.OPTION_MENU_DARK" alt="threedots icon" class="cursor-pointer w-6" />
+    </button>
+  </div>
+
+  <!--
+    Dropdown menu, show/hide based on menu state.
+
+    Entering: "transition ease-out duration-100"
+      From: "transform opacity-0 scale-95"
+      To: "transform opacity-100 scale-100"
+    Leaving: "transition ease-in duration-75"
+      From: "transform opacity-100 scale-100"
+      To: "transform opacity-0 scale-95"
+  -->
+   <div
+    *ngIf="isMenu"
+    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    tabindex="-1"
+  >
+    <div class="py-1" role="none">
+      <ng-container *ngFor="let menuItem of threeDotsMenu; let i = index">
+     
+        <a
+          class="text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-4 py-2 text-sm flex items-center"
+          role="menuitem"
+          tabindex="-1"
+          [attr.id]="'menuitem-' + i"
+          (click)="menuItem.clickHandler()"
+        >
+          <img [src]="menuItem?.icon" alt="" class="mr-3" />
+          {{ menuItem?.text }}
+        </a>
+      </ng-container>
+    </div>
+  </div> 
+  <!-- <div *ngIf="isMenu" (clickOutside)="isMenu" [ngClass]="
+  customerData.length - 1 == index && customerData.length !== 1
+    ? 'popup-up'
+    : 'popup-down'
+" class="absolute right-0 cursor-pointer z-10 mt-2 p-2 w-52 cockpit-bg border border-cockpit_gray-300 cockpit-text-50 rounded-md shadow-lg focus:outline-none">
+    <div role="none" *ngFor="let option of dropdownOptions; let i = index" class=""
+      (click)="option.clickHandler(); toggleMenu()">
+      <div class="flex gap-2 items-center py-1">
+        <svg-icon [src]="option.icon" [svgClass]="option.classes"></svg-icon>
+        <a role="menuitem" tabindex="-1" [id]="'menu-item-' + i">
+          <p>
+            {{ option.label }}
+          </p>
+        </a>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<div *ngIf="isMenu" (click)="toggleMenu()" class="fixed inset-0"></div>

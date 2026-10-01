@@ -1,0 +1,135 @@
+<ng-template appPlaceholder></ng-template>
+
+<!-- <div class="pt-4 pr-8">
+  <div class="mb-6">
+    <app-heading-description
+      [heading]="'Dashboard'"
+      [description]="'Groups help in creating and adding users to courses easy'"
+    ></app-heading-description>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6">
+    <ng-container *ngFor="let app of dashboardCardArray">
+      <app-dashboard-app-card
+        [image_url]="app.image_url"
+        [label]="app.name"
+        [value]="app.totalCourses"
+      ></app-dashboard-app-card>
+    </ng-container>
+  </div>
+
+  <div class="mt-8">
+    <h1 class="text-lg font-semibold text-r_color_secondary-700">
+      Popular Courses
+    </h1>
+    <div class="mt-4 grid grid-cols-3 mb-3 gap-3">
+      <ng-container *ngFor="let cardData of super_admin_card_data">
+        <app-super-admin-card
+          [super_card_data]="cardData"
+        ></app-super-admin-card>
+      </ng-container>
+    </div>
+  </div>
+</div> -->
+<div class="grid-container ">
+    <div class="header commonCss">
+      <app-heading-description
+        [heading]="'Dashboard'"
+        [description]="'Groups help in creating and adding users to courses easy'"
+      ></app-heading-description>
+    </div>
+  
+    <!-- <div class="cards-container commonCss  grid grid-cols-3  gap-6 ">
+       <ng-container *ngFor="let app of dashboardCardArray">
+        <app-dashboard-app-card
+          [image_url]="app.image_url"
+          [label]="app.name"
+          [value]="app.totalCourses"
+        ></app-dashboard-app-card>
+      </ng-container> 
+    </div> -->
+
+    <div class="cards-container commonCss  grid grid-cols-3  gap-6" >
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="commonService.Images.SUPER_ADMIN_APP_COURSE_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardCardArray.totalCourse== dashboardCardArray.totalCourse ? 'Total Courses' : dashboardCardArray.totalCourse }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardCardArray.totalCourse }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="commonService.Images.ACTIVE_COURSE_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardCardArray.activeCourse== dashboardCardArray.activeCourse ? 'Active Courses' : dashboardCardArray.activeCourse }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardCardArray.activeCourse }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="commonService.Images.MOST_PURCHASED_COURSE_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardCardArray.mostPurchasedCourse== dashboardCardArray.mostPurchasedCourse ? 'Most Purchased course ' : dashboardCardArray.mostPurchasedCourse }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardCardArray.mostPurchasedCourse == null ? '0' : dashboardCardArray.mostPurchasedCourse }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="commonService.Images.TOTAL_ORGANISATION_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardCardArray.totalOrganisation== dashboardCardArray.totalOrganisation ? 'Total Organisations ' : dashboardCardArray.totalOrganisation }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardCardArray.totalOrganisation == null ? '0' : dashboardCardArray.totalOrganisation }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="commonService.Images.TOTAL_USERS_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardCardArray.totalUser== dashboardCardArray.totalUser ? 'Total Users' : dashboardCardArray.totalUser }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardCardArray.totalUser == null ? '0' : dashboardCardArray.totalUser }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="commonService.Images.TOTAL_CERTIFICATED_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardCardArray.totalCertificate== dashboardCardArray.totalCertificate ? 'Total Certificates ' : dashboardCardArray.totalCertificate }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardCardArray.totalCertificate == null ? '0' : dashboardCardArray.totalCertificate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="super-admin-cards ">
+      <h1 class="text-lg font-semibold text-r_color_secondary-700">
+        Popular Courses
+      </h1>
+      <div class="super-admin-card commonCss  grid grid-cols-3  gap-6">
+        <ng-container *ngFor="let cardData of super_admin_card_data">
+          <app-super-admin-card
+            [super_card_data]="cardData"
+            [threeDotsMenu]="threeDotsMenuOption"
+
+          ></app-super-admin-card>
+        </ng-container>
+      </div>
+    </div>
+  </div>

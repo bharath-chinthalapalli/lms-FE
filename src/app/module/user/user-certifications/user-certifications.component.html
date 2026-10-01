@@ -1,0 +1,22 @@
+<div class="pt-6 pr-8">
+  <div class="w-ful flex items-center justify-between">
+    <app-heading-description
+      [heading]="'Certifications'"
+    ></app-heading-description>
+    <button
+      type="button"
+      class="rounded-md flex gap-2 items-center bg-primary-color-700 text-white font-medium text-sm px-4 py-3"
+    >
+      <img [src]="commonService.Images.DOWLOAD_ICON" alt="dowload icon" />
+      <p>Download All</p>
+    </button>
+  </div>
+
+  <div class="mt-7 rounded-lg">
+    <app-lms-table
+      [TableType]="commonService.TextEnums.CERTIFICATION"
+      [TableTheadArray]="certificatedTableHeader"
+      [TableTBodyArray]="certificatedArray"
+    ></app-lms-table>
+  </div>
+</div>

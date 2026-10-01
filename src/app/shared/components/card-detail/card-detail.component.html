@@ -1,0 +1,132 @@
+<ng-template appPlaceholder></ng-template>
+
+
+
+<div>
+  <div class = "bg-white px-6 py-8"  *ngIf="openQuix != _commonService.TextEnums.QUIZ_TEXT" >
+    <div class = "flex  justify-between ">
+      <div class = "flex   gap-3">
+        <div class = "flex items-start"  >
+          <img [src]="_commonService.Images.BACK_ICON" alt="back icons" class = "mt-1 cursor-pointer"   (click)="goBackToDashBoard(_commonService.TextEnums.SHOW_CARD_DETAILS)"   />
+        </div>
+       <div>
+        <p class = "font-bold text-[#0E0E0E] text-2xl">{{cardDetailsById?.name}}</p>
+        <p class = "text-sm text-r_color_secondary-400 font-medium italic">{{cardDetailsById?.task}}</p>
+        <div class = "flex items-center text-r_color_secondary-500 font-medium text-sm gap-8 mt-3">
+          <div class = "flex">
+            <img [src] = '_commonService.Images.DOCUNMENT_ICON' alt="docunment icons" class = "mr-1"/>
+            2
+          </div>
+          <div class = "flex">
+            <img [src] = '_commonService.Images.DOCUNMENT_ICON' alt="docunment icons" class = "mr-1"/>
+            2
+          </div>
+          <div class = "flex">
+            <img [src] = '_commonService.Images.DOCUNMENT_ICON' alt="docunment icons" class = "mr-1"/>
+            2
+          </div>
+
+        </div>
+       </div>
+      </div>
+
+      <div class = " bg-gray-50 border border-gray-200 w-[384px] rounded-lg flex items-center justify-between p-6">
+        <div class ="flex flex-col ">
+          <p class = "text-sm font-medium text-r_color_secondary-900">2/3 Completed</p>
+          <p class = "text-sm font-medium text-r_color_secondary-500">1 more contents</p>
+        </div>
+        <div>
+          <p  class = "font-normal text-sm text-r_color_secondary-500">{{cardDetailsById?.duration}}</p>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <hr class ="bg-gray-200 mt-4 mb-6"/>
+    <div>
+      <p class = "text-r_color_secondary-700 text-base font-medium mb-3">SIC - Newcon - Woodlands N7C27</p>
+      <video class = "w-full h-[50vh]" controls>
+        <source src="movie.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+      </video>
+
+      <div class = "flex items-center justify-between mt-8">
+        <div class = "flex items-center gap-1">
+          <img  [src]="_commonService.Images.PRIVIOUS_ICON" alt = "privious icons"/>
+          <p class = 'text-sm font-medium text-r_color_secondary-500'>Prev</p>
+        </div>
+        <div class = "flex items-center gap-1">
+          <p class = "text-sm font-medium text-[#2441E7]">next</p>
+          <img  [src]="_commonService.Images.NEXT_ICON" alt="next icons"/>
+
+        </div>
+
+
+      </div>
+
+      <div class = "flex items-center justify-center">
+        <button type="button"  class = "py-3 px-4 bg-[#2441E7] text-white rounded-md" (click)="openAlertPopup()"> Take Quiz</button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="mt-2"  *ngIf="openQuix == _commonService.TextEnums.QUIZ_TEXT" >
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-3">
+        <img
+          [src]="_commonService.Images.BACK_ICON"
+          alt="back icons"
+          class="mt-1"
+           (click)="goBackToDashBoard(_commonService.TextEnums.QUIZ_TEXT)"   />
+        <h1 class="text-black font-semibold text-2xl">Quiz</h1>
+      </div>
+
+      <div class="bg-white w-full border border-gray-200 px-6 py-6  rounded-md ">
+        <p class="text-[#0E0E0E] font-semibold text-lg">
+          SIC Quiz - China Con - Parc Clematis
+        </p>
+
+        <div *ngFor="let item of quizArray">
+          <div class="mt-4">
+            <p>{{ item?.id }} Q {{ item?.question }}</p>
+            <div
+              class="flex items-center mt-4 gap-2"
+              *ngFor="let option of item?.option"
+            >
+              <input
+                type="radio"
+                class="w-4 h-4 bg-white border border-gray-300"
+              />
+              <p class="text-sm font-normal text-r_color_secondary-800">{{ option }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          type="button"
+          class="bg-[#2441E7] px-4 py-3 rounded-md text-white w-44"
+          (click)="openSuccessPopup()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+

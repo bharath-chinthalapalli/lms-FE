@@ -1,0 +1,25 @@
+.lms-table {
+    @apply w-full rounded-lg border  border-r_color_secondary-200;
+    thead {
+      tr {
+        @apply bg-r_color_secondary-100;
+        th {
+          @apply py-3 px-6 text-r_color_secondary-500 text-xs font-normal text-start;
+        }
+      }
+    }
+    tbody {
+      tr {
+        @apply border border-r_color_secondary-200;
+        td {
+          @apply text-r_color_secondary-500 font-normal text-sm text-start py-4 px-6;
+        }
+      }
+      tr:hover {
+        .lms-threedots {
+          @apply visible;
+        }
+      }
+    }
+  }
+  

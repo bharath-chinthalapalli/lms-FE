@@ -1,0 +1,26 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="pt-4 pr-8">
+  <div class="flex items-center justify-between mb-8">
+    <app-heading-description
+      [heading]="'Skill Management'"
+      [description]="
+        'Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.'
+      "
+    >
+    </app-heading-description>
+    <div class="flex items-center gap-4">
+      <app-button-icon
+        (click)="addSkillPopup()"
+        [icon]="commonService.Images.ADD_PLUS_ICON"
+        [btn_text]="'Add Skill'"
+      ></app-button-icon>
+    </div>
+  </div>
+
+  <app-lms-table
+    [TableType]="commonService.TextEnums.SUPER_ADMIN_SKILL_MANAGEMENT"
+    [TableTheadArray]="skillManagementTableHeader"
+    [TableTBodyArray]="skillManagementArray"
+  ></app-lms-table>
+</div>

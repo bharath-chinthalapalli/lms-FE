@@ -1,0 +1,4 @@
+.generic_newoverlay {
+  @apply fixed top-[5.5rem] bottom-0 right-0 bg-black z-50;
+  transition: opacity 500ms;
+}

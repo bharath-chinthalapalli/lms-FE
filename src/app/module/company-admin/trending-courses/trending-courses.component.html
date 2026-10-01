@@ -1,0 +1,60 @@
+<div
+    class="bg-white flex flex-col rounded-b-lg shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] relative lms-super-admin-card card mt-4">
+    <div class="absolute z-20 right-4 top-4 cursor-pointer  lms-threedots">
+        <!-- <app-three-dots-menu [threeDotsMenu]="threeDotsMenu"></app-three-dots-menu> -->
+        <img [src]="_commonService.Images.RATING_ICON" alt="">
+    </div>
+    <div>
+        <!-- <div class=" imageCard z-10 "></div> -->
+        <ng-container>
+            <div *ngIf="image_url">
+                <img [src]="image_url" alt="main-img"
+                class="w-full max-h-56 object-cover rounded-t-lg" /> 
+            </div>
+            <div *ngIf="!image_url">
+                <img [src]="_commonService.Images.CARD_MAIN_IMAGES" alt=""
+                class="w-full max-h-56 object-cover rounded-t-lg" >
+            </div>
+        </ng-container>
+    </div>
+    <div class="py-3 px-4 flex flex-col gap-3">
+        <div class="flex items-start justify-between">
+            <div class="flex flex-col gap-2">
+                <p class="text-green-700 font-medium text-sm">Contruction</p>
+                <h1 class="text-xl font-semibold text-r_color_secondary-900">
+                    {{ tittle }}
+                </h1>
+                <p class="text-sm font-normal text-r_color_secondary-500">
+                    {{ description }}
+                </p>
+            </div>
+            <!-- <div class="flex flex-col gap-2">
+                <p class="text-sm font-normal text-r_color_secondary-500">
+                    Available till:
+                </p>
+                <p class="text-base font-normal text-r_color_secondary-800">
+                    {{ super_card_data?.available_till }}
+                </p>
+            </div> -->
+            <div>
+                <img [src]="_commonService.Images.OPEN_CARD" class="cursor-pointer" alt="">
+            </div>
+        </div>
+        <div class="flex items-center gap-3" *ngFor="let item of tags">
+            <div class="py-2 px-3 rounded text-r_color_secondary-700 text-sm font-medium bg-primary-color-50">
+                {{item}}
+            </div>
+            <!-- <div class="py-2 px-3 rounded text-r_color_secondary-700 text-sm font-medium bg-r_color_orange-50">
+                Safety Procedure
+            </div> -->
+        </div>
+        <div class="flex items-center gap-2">
+            <p class="text-sm font-normal text-r_color_secondary-500">
+                Available till:
+            </p>
+            <p class="text-base font-normal text-r_color_secondary-800">
+                {{ availableTill }}
+            </p>
+        </div>
+    </div>
+</div>

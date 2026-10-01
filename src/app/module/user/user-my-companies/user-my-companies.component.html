@@ -1,0 +1,15 @@
+<div class="pt-6 pr-8">
+  <div class="w-ful flex items-center">
+    <app-heading-description
+      [heading]="'My Companies'"
+    ></app-heading-description>
+  </div>
+
+  <div class="mt-7 rounded-lg">
+    <app-lms-table
+      [TableTheadArray]="myCompanyTableHeader"
+      [TableTBodyArray]="myCompanyArray"
+      [TableType]="commonService.TextEnums.MY_COMPONIERS"
+    ></app-lms-table>
+  </div>
+</div>

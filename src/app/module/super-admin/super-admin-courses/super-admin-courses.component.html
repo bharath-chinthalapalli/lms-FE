@@ -1,0 +1,88 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="pt-4 pr-8">
+  <div *ngIf="enableAddCourse != commonService.TextEnums.ADD_COURSE">
+    <div class="flex items-center justify-between mb-8">
+      <app-heading-description
+        [heading]="'Courses'"
+        [description]="'All the Courses created are shown here'"
+      >
+      </app-heading-description>
+      <div class="flex items-center gap-4">
+        <div
+          class="flex items-center border border-r_color_secondary-300 rounded-md bg-r_color_base"
+        >
+          <div
+            (click)="getViewChange(commonService.TextEnums.TABLE_VIEW)"
+            class="border-r border-r_color_secondary-300 py-3 px-3 cursor-pointer"
+          >
+            <svg-icon
+              [src]="commonService.Images.LIST_VIEW_ICON"
+              [svgClass]="
+                showSelectView == commonService.TextEnums.TABLE_VIEW
+                  ? 'view-icon-active'
+                  : 'view-icon'
+              "
+            ></svg-icon>
+          </div>
+          <div
+            class="py-3 px-3 cursor-pointer"
+            (click)="getViewChange(commonService.TextEnums.CARD_VIEW)"
+          >
+            <svg-icon
+              [src]="commonService.Images.CARD_VIEW_ICON"
+              [svgClass]="
+                showSelectView == commonService.TextEnums.CARD_VIEW
+                  ? 'view-icon-active'
+                  : 'view-icon'
+              "
+            ></svg-icon>
+          </div>
+        </div>
+        <div
+          class="border border-r_color_secondary-300 rounded-md bg-r_color_base py-3 px-3"
+        >
+          <img
+            [src]="commonService.Images.ADJUSTMENT_ICON"
+            alt="adjustment icons"
+          />
+        </div>
+        <!-- (click)="enableAddCourse = commonService.TextEnums.ADD_COURSE" -->
+        <app-button-icon
+          (click)="navToAddCourse()"
+          [icon]="commonService.Images.ADD_PLUS_ICON"
+          [svgColor]="'text-r_color_base'"
+          [btn_text]="'Add Course'"
+        ></app-button-icon>
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-3 mb-3 gap-6"
+      *ngIf="showSelectView == commonService.TextEnums.CARD_VIEW"
+    >
+      <ng-container *ngFor="let cardData of super_admin_card_data">
+        <app-super-admin-card
+          [super_card_data]="cardData"
+          (assignCourse)="addCourse()"
+          [threeDotsMenu]="threeDotsMenuOption"
+        ></app-super-admin-card>
+      </ng-container>
+    </div>
+
+    <div *ngIf="showSelectView == commonService.TextEnums.TABLE_VIEW">
+      <app-lms-table
+        [TableType]="commonService.TextEnums.SUPER_ADMIN_COURSE"
+        [TableTheadArray]="super_admin_table_header"
+        [TableTBodyArray]="super_admin_card_data"
+        [threeDotMenOption]="threeDotsMenuOption"
+      ></app-lms-table>
+    </div>
+  </div>
+
+  <!-- <div *ngIf="enableAddCourse == commonService.TextEnums.ADD_COURSE">
+    <app-super-admin-add-course
+      (goBackToCourseViewSuperAdmin)="this.enableAddCourse = ''"
+    ></app-super-admin-add-course>
+  </div> -->
+</div>

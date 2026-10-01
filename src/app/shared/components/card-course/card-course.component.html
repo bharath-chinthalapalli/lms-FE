@@ -1,0 +1,41 @@
+<div
+      class="bg-white  flex flex-col rounded-b-lg shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)]"
+    >
+      <div>
+        <img
+          [src]="_commonService.Images.CARD_MAIN_IMAGES"
+          alt="main-img"
+          class="bg-contain bg-center rounded-t-lg w-full"
+        />
+      </div>
+      <div class="py-3 px-4 flex flex-col gap-6">
+       <div class = "flex items-center justify-between">
+        <div class="flex flex-col gap-1">
+          <h1 class="text-xl font-semibold text-r_color_secondary-900">{{cardDetails?.name}}</h1>
+          <p class="text-sm font-medium text-r_color_secondary-600">{{cardDetails?.task}}</p>
+          <p class="text-xs font-medium text-r_color_secondary-400">
+            {{cardDetails?.duration}}
+          </p>
+        </div>
+        <div>
+          <img
+            [src]="_commonService.Images.DOWNLOAD_IN_PROGRESS"
+            alt="main-img"
+            class="bg-contain bg-center  w-full"
+          />
+        </div>
+       </div>
+       <div class = "flex items-center justify-between">
+        <div>
+        <p class = 'text-xs font-medium text-r_color_secondary-700'><span class = 'text-xs font-normal text-r_color_secondary-500'>Assigned By: </span >SSB Construction</p>
+
+        </div>
+        <button type="button" class = "text-[#2441E7] text-sm font-medium">
+          Details
+        </button>
+
+       </div>
+      </div>
+    </div>
+
+

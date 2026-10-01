@@ -1,0 +1,129 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="content">
+  <div class="flex items-end justify-between">
+    <app-heading-description [heading]="'Users'" [description]="
+          'Groups help in creating and adding users to courses easy'">
+    </app-heading-description>
+    <div class="flex items-center gap-4">
+      <div class="flex flex-row justify-end gap-4">
+        <div class="relative flex rounded">
+          <span class="absolute top-3 left-3">
+            <img [src]="_commonService.Images.SEARCH_ICON" alt="serach icons" />
+          </span>
+          <input type="search"
+            class=" border border-gray-300 rounded-md py-2.5 pl-9 pr-4 placeholder:text-sm placeholder:text-r_color_secondary-500 placeholder:font-normal"
+            placeholder="Search" (input)="getSearchData($event)" />
+        </div>
+      </div>
+      <div>
+        <button [disabled]="anyCheckboxChecked"
+          [ngClass]="anyCheckboxChecked 
+              ?'bg-primary-color-700 bg-opacity-50 flex items-center gap-2 text-r_color_base text-sm font-medium px-4 py-3 rounded-md cursor-not-allowed'
+              : 'bg-primary-color-700 flex items-center gap-2 text-r_color_base text-sm font-medium px-4 py-3 rounded-md cursor-pointer'" class=""
+          (click)="openPopupInviteUsers()">
+          <img src="../../../../assets/images/Plus.svg" alt="" class="">
+          Add user
+        </button>
+        <!-- <app-button-icon
+            (click)="openPopupInviteUsers()"
+            [icon]="_commonService.Images.ADD_PLUS_ICON"
+            [btn_text]="_commonService.TextEnums.INVITE_USER">
+            </app-button-icon> -->
+      </div>
+      <div>
+
+        <button [disabled]="!isCreateGroupButtonEnabled"
+          [ngClass]="!isCreateGroupButtonEnabled ?  'bg-primary-color-700 bg-opacity-50 flex items-center gap-2 text-r_color_base text-sm font-medium px-4 py-3 rounded-md cursor-not-allowed' 
+            :    'bg-primary-color-700 flex items-center gap-2 text-r_color_base text-sm font-medium px-4 py-3 rounded-md cursor-pointer' " class=""
+          (click)="openPopupCreateGroup()">
+          <img src="../../../../assets/images/Plus.svg" alt="" class="">
+          Create Group
+        </button>
+        <!-- <app-button-icon
+            (click)="openPopupCreateGroup()"
+            [icon]="_commonService.Images.ADD_PLUS_ICON"
+            [btn_text]="'Create Group'">
+            </app-button-icon> -->
+      </div>
+    </div>
+  </div>
+  <div class="pt-8">
+    <!-- <app-lms-table
+        [TableType]="_commonService.TextEnums.COMPANY_ADMIN_GROUPS"
+        [TableTheadArray]="organisationTableHeader"
+        [TableTBodyArray]="usersArray">
+        </app-lms-table> -->
+    <table class="lms-table">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" id="checkboxNoLabel" value="" aria-label="..." [checked]="selectAllChecked"
+              (change)="selectAllUsers($event)" class="cursor-pointer w-4 h-4 !rounded-[4px]
+                   bg-white border-[2px] border-gray-300">
+          </th>
+          <th *ngFor="let headTable of organisationTableHeader ">{{ headTable }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of getUsersArray ;let i=index">
+          <td>
+            <input type="checkbox" [checked]="selectAllChecked || item.isAssigned" (click)="selectedUser(item)"
+              id="{{i}}" class="cursor-pointer w-4 h-4 !rounded-[4px] bg-white border-[2px] border-gray-300">
+          </td>
+          <td>
+            <p class="text-gray-900 font-medium text-sm">
+              {{item.name}}
+            </p>
+          </td>
+          <td>
+            {{item.phoneNumber}}
+          </td>
+          <td>
+            <div class="">
+              <div class="flex items-center gap-2.5" *ngIf="!(item.groupName?.length == 0); else naBlock">
+                <p class="text-gray-800 text-xs font-medium bg-gray-100 w-fit px-2.5 py-1 rounded-full "
+                  *ngFor="let item1 of item.groupName">{{ item1 }}</p>
+              </div>
+              <ng-template #naBlock>
+                <p class="text-gray-800 text-xs font-medium bg-gray-100 w-fit px-2.5 py-1 rounded-full ">N/A</p>
+              </ng-template>
+            </div>
+          </td>
+          <td>
+            {{item.skill}}
+          </td>
+          <td>
+            {{item.numberOfCourses}}
+          </td>
+          <td>
+            <button class="text-green-800 text-sm font-normal" (click)="editUser(item)">
+              Edit
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+    <div *ngIf="getUsersArray.length > 0"
+      class="flex  items-center justify-between text-r_color_secondary-700 text-sm font-medium">
+      <div>
+        <p>Showing <span class="!font-semibold">{{offset * 1 + 1 }} </span>
+          to <span class="!font-semibold">{{offset + numberOfElements}}</span>
+          of <span class="!font-semibold"> {{totalElements}}</span> </p>
+      </div>
+      <app-paginator *ngIf="organisationTableHeader.length > 0" [currentPage]="currentPage" [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)">
+      </app-paginator>
+    </div>
+    <div *ngIf="getUsersArray.length == 0" class="grid col-span-3">
+      <div class="mt-36">
+        <div>
+          <img [src]="_commonService.Images.NO_RECORDS" alt="" class="mx-auto justify-center">
+        </div>
+        <p class="text-center text-sm text-r_color_secondary-500 mt-4 font-normal">No records available</p>
+      </div>
+    </div>
+  </div>
+</div>

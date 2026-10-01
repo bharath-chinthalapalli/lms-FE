@@ -1,0 +1,303 @@
+<div class="generic_newoverlay !z-[9999999]">
+  <div
+    class="overflow-y-auto bg-gray-900/75 overflow-x-hidden fixed top-0 right-0 left-0 z-50 mx-auto w-full md:inset-0 h-modal md:h-full"
+  >
+    <div
+      class="p-3.5 rounded-md relative transition-all w-auto pointer-events-none"
+    >
+      <div
+        class="border-none rounded-3xl relative flex flex-col mx-auto mt-[12rem] w-[25%] px-6 py-8 bg-white pointer-events-auto bg-clip-padding shadow-xl outline-none text-current"
+      >
+        <div>
+          <div
+            class="modal-header flex-shrink-0 text-center p-2 border--200 rounded-t-md"
+          >
+            <p class="text-['#121D54'] text-xl font-bold">{{ popupHeading }}</p>
+          </div>
+          <div
+            class="modal-body relative text-base text-[#1E3491] font-medium text-center mt-3"
+          >
+            <ng-container
+              *ngIf="
+                type == commonService.TextEnums.SUPER_ADMIN_ADD_ORGANISATION
+              "
+            >
+              <form [formGroup]="form">
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Organization Name</p>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    placeholder="Enter company name"
+                    class="form-control"
+                  />
+                  <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                    <div *ngIf="form.get('name')?.hasError('required')" class="text-red-500 text-sm">
+                        Name is required
+                    </div>
+                  </div>
+                </div>
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Organization Admin Name</p>
+                  <input
+                    type="text"
+                    placeholder="Enter Admin name"
+                    formControlName="adminName"
+                    class="form-control"
+                  />
+                  <div *ngIf="form.get('adminName')?.invalid && form.get('adminName')?.touched">
+                    <div *ngIf="form.get('adminName')?.hasError('required')" class="text-red-500 text-sm">
+                        Admin name is required
+                    </div>
+                  </div>
+                </div>
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Email Id</p>
+                  <input
+                    type="email"
+                    placeholder="Enter Email Id"
+                    formControlName="email"
+                    class="form-control"
+                  />
+                  <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                    <div *ngIf="form.get('email')?.hasError('required')" class="text-red-500 text-sm">
+                        Email is required
+                    </div>
+                  </div>
+                </div>
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Phone Number</p>
+                  <input
+                    type="text"
+                    formControlName="phoneNumber"
+                    placeholder="Enter Phone Number"
+                    class="form-control"
+                  />
+                  <div *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
+                    <div *ngIf="form.get('phoneNumber')?.hasError('required')" class="text-red-500 text-sm">
+                        Phone number is required
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </ng-container>
+
+            <ng-container
+              *ngIf="type == this.commonService.TextEnums.SUPER_ADMIN_COURSE"
+            >
+              <form>
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Select Organization</p>
+                  <select class="form-control">
+                    <option>Select</option>
+                  </select>
+                </div>
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Assign till:</p>
+                  <input type="date" class="form-control" />
+                </div>
+                <div class="flex flex-col text-start gap-8 mb-4">
+                  <p class="lms-form-label">Number of Licenses</p>
+                  <div
+                    class="flex flex-col text-xs text-r_color_secondary-400 font-normal"
+                  >
+                    <div class="flex items-center justify-between">
+                      <p>Min</p>
+                      <p>Max</p>
+                    </div>
+
+                    <input type="range" min="0" max="50" />
+                  </div>
+                </div>
+              </form>
+            </ng-container>
+            <ng-container
+              *ngIf="
+                type ==
+                this.commonService.TextEnums.SUPER_ADMIN_SKILL_MANAGEMENT
+              "
+            >
+              <form [formGroup]="form">
+                <div class="lms-form-child-container">
+                  <p class="lms-form-label">Skill Name</p>
+                  <input
+                    type="text"
+                    placeholder="Enter skill name"
+                    formControlName="name"
+                    class="form-control"
+                  />
+                </div>
+              </form>
+            </ng-container>
+
+
+            <ng-container *ngIf="type == this.commonService.TextEnums.COMPANY_ADMIN_USERS">
+              <!-- <form [formGroup]="form">
+
+                <div class="flex items-center justify-start mb-2 gap-2">
+                  <input type="radio"  formControlName="userType" value="bulk" (change)="toggleForm()" >  <label class="text-sm font-normal text-gray-700 px-1"> Bulk Users</label>
+                  <input type="radio" formControlName="userType" value="single" (change)="toggleForm()">  <label class="text-sm font-normal text-gray-700 px-1"> Single User</label>
+                </div>
+         
+     
+                <div *ngIf="form.value.userType === 'bulk'">
+                
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Sample File:</p>
+                    <input
+                      type="file"
+                      placeholder="Click to Upload"
+                      formControlName="bulkFile"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              
+                <div *ngIf="form.value.userType === 'single'">
+
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Name</p>
+                    <input
+                      type="text"
+                      placeholder="Enter name"
+                      formControlName="userName"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Phone Number</p>
+                    <input
+                      type="tel"
+                      placeholder="Enter phone number"
+                      formControlName="phoneNumber"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Skill</p>
+                    <input
+                      type="number"
+                      placeholder="Enter phone number"
+                      formControlName="skillId"
+                      class="form-control"
+                    />
+                  
+                  </div>
+                </div>
+                
+              </form> -->
+              <!-- <label class="lms-form-label" for="">Skill</label>
+              <select name="" id="" formControlName="skillId" (change)="getSkills($event)" 
+                class="select-inputs">
+                <option value="">Select Skill</option>
+                <option value="{{skill.id}}" *ngFor="let skill of skillList">
+                  {{ skill.name}}
+                </option>
+              </select> -->
+
+              <form [formGroup]="form">
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Name</p>
+                    <input
+                      type="text"
+                      placeholder="Enter name"
+                      formControlName="name"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Phone Number</p>
+                    <input
+                      type="tel"
+                      placeholder="Enter phone number"
+                      formControlName="phoneNumber"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="lms-form-child-container">
+                    <p class="lms-form-label">Skill</p>
+                    <input
+                      type="number"
+                      placeholder="Enter phone number"
+                      formControlName="skill"
+                      class="form-control"
+                    />
+    
+                  </div>
+              </form>
+            </ng-container>
+
+
+
+            <ng-container *ngIf="type == this.commonService.TextEnums.COMPANY_ADMIN_ASSIGN_USERS">
+              <div class="modal-content overflow-y-auto">
+                <div class="items-center grid grid-cols-2 gap-8  py-2 px-2 " *ngFor="let item of getUserByAssignList;let i=index">
+                      <div class="flex items-center gap-2" *ngIf="getUserByAssignList.length> 0">
+                        <input 
+                          type="checkbox"
+                          (change)="onCheckboxChange($event, i)"
+                          [checked]="item.isAssigned"
+                          name=""
+                          id=""
+                          [id]="'settings'+item.id"
+                          [value]="'settings'+i " 
+                          >
+                        <p class="text-gray-900 text-sm font-medium uppercase">{{item.name}}</p>
+                      </div>
+                      <p class="text-gray-500 text-sm font-normal text-left">{{item.skill}}</p>
+                </div>
+                <div *ngIf="getUserByAssignList.length == 0" class="py-5">
+                  <p class="text-gray-500 text-sm">No reocords</p>
+                </div>
+
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="type == this.commonService.TextEnums.COMPANY_ADMIN_ASSIGN_USERS_FROM_GROUP_USER_CARD">
+              ffsfsd
+            </ng-container>
+
+            
+          </div>
+          <div
+            class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end py-4 pl-4 border--200 rounded-b-md space-x-4"
+          >
+            <button
+              type="button"
+              (click)="closePopUp()"
+              class="text-r_color_secondary-500 text-base font-semibold bg-white border border-gray-400 h-10 w-28 rounded-md"
+            >
+              {{ cancleBtn }}
+            </button>
+
+            <ng-container>
+
+                <div *ngIf="id">
+                  <button class="text-white text-base font-semibold bg-primary-color-700 h-10 w-28 rounded-md" (click)="saveAdmin()">
+                    save
+                  </button>
+                </div>
+                <div *ngIf="!id">
+                  <button
+                    (click)="add()"
+                    [disabled]="form.invalid"
+                    type="submit"
+                    [ngClass]="form.invalid ?
+                    'bg-primary-color-700 bg-opacity-50 px-4 py-2 rounded-full text-whitePrimary font-medium cursor-not-allowed ':
+                    'bg-primary-color-700 px-4 py-2 rounded-full text-whitePrimary font-medium '"
+                    class="text-white text-base font-semibold bg-primary-color-700 h-10 w-28 rounded-md"
+                  >
+                    {{ submitBtn }}
+                  </button>
+    
+                </div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

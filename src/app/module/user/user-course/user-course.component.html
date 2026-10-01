@@ -1,0 +1,83 @@
+<div class="pt-4 pr-8">
+  <div *ngIf="showCardDetails != _commonService.TextEnums.SHOW_CARD_DETAILS">
+    <div class="mb-6">
+      <app-heading-description
+        [heading]="'My Courses'"
+        [description]="
+          'Groups help in creating and adding users to courses easy'
+        "
+      ></app-heading-description>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="px-4 py-1 text-center rounded border border-gray-400 text-sm font-medium text-r_color_secondary-600"
+        >
+          Recently Added
+        </button>
+        <button
+          type="button"
+          class="px-4 py-1 text-center rounded border border-gray-400 text-sm font-medium text-r_color_secondary-600"
+        >
+          Recently Added
+        </button>
+        <button
+          type="button"
+          class="px-4 py-1 text-center rounded border border-gray-400 text-sm font-medium text-r_color_secondary-600"
+        >
+          Recently Added
+        </button>
+      </div>
+      <div>
+        <div class="flex flex-row justify-end gap-4">
+          <div class="relative flex rounded">
+            <span class="absolute top-3 left-3">
+              <img
+                [src]="_commonService.Images.SEARCH_ICON"
+                alt="serach icons"
+              />
+            </span>
+            <input
+              type="search"
+              class="h-10 border border-gray-300 rounded-md py-3 px-9 placeholder:text-sm placeholder:text-r_color_secondary-500 placeholder:font-normal"
+              placeholder="Search"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <h1 class="text-r_color_secondary-700 font-semibold text-lg">
+        Recently Added
+      </h1>
+      <div class="mt-4 grid grid-cols-3 gap-6">
+        <app-card-course
+          *ngFor="let course of recentViewArray"
+          (click)="showTheCourseDetails(course)"
+          [cardDetails]="course"
+        ></app-card-course>
+      </div>
+    </div>
+    <div class="mt-8">
+      <h1 class="text-r_color_secondary-700 font-semibold text-lg">
+        Complete This Week
+      </h1>
+      <div class="mt-4 grid grid-cols-3 gap-6">
+        <app-card-course
+          *ngFor="let course of recentViewArray"
+          (click)="showTheCourseDetails(course)"
+          [cardDetails]="course"
+        ></app-card-course>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showCardDetails == _commonService.TextEnums.SHOW_CARD_DETAILS">
+    <app-card-detail
+      [cardDetailsById]="cardDetailsById"
+      (goToDashboard)="goBackToDashBoard()"
+    ></app-card-detail>
+  </div>
+</div>

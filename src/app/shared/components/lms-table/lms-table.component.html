@@ -1,0 +1,198 @@
+<div class="flex flex-col gap-5">
+  <table class="lms-table">
+    <thead>
+      <tr>
+        <th *ngFor="let headTable of TableTheadArray">{{ headTable }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="TableType == commonService.TextEnums.CERTIFICATION">
+        <tr *ngFor="let data of TableTBodyArray">
+          <td>{{ data?.id }}</td>
+          <td class="!text-r_color_secondary-900 !font-medium">
+            {{ data?.Course_Name }}
+          </td>
+          <td>{{ data?.Company }}</td>
+          <td>{{ data?.certification_id }}</td>
+          <td>{{ data?.completed_On }}</td>
+          <td>
+            <img
+              [src]="commonService.Images.DOWLOAD_ICON_TABLE"
+              alt="dowload icon table"
+            />
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="TableType == commonService.TextEnums.MY_COMPONIERS">
+        <tr *ngFor="let data of TableTBodyArray">
+          <td>{{ data?.id }}</td>
+          <td class="!text-r_color_secondary-900 !font-medium">
+            {{ data?.Course_Name }}
+          </td>
+          <td>{{ data?.Added_On }}</td>
+          <td>{{ data?.courses_assigned }}</td>
+          <td>{{ data?.courses_completed }}</td>
+          <td>
+            <img
+              [src]="commonService.Images.DOWLOAD_ICON_TABLE"
+              alt="dowload icon table"
+            />
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container
+        *ngIf="TableType == commonService.TextEnums.SUPER_ADMIN_ORGANISATION"
+      >
+        <tr *ngFor="let data of TableTBodyArray">
+          <td class="!text-r_color_secondary-900 !font-medium">
+            <div class="flex gap-1">
+              <img
+                [src]="
+                  data?.isActive
+                    ? commonService.Images.ACTIVE_ORGANISATION
+                    : commonService.Images.INACTIVE_ORGANISATION
+                "
+                alt="active icon"
+              />
+              <p>{{ data?.name == null ? 'N/A' : data?.name}}</p>
+            </div>
+          </td>
+          <td>{{ data?.adminName == null ? 'N/A' : data?.adminName }}</td>
+          <td>{{ data?.email == null ? 'N/A' : data?.email}}</td>
+          <td>{{ data?.phoneNumber == null ? 'N/A' : data?.phoneNumber }}</td>
+          <td>{{ data?.courseCount == null ? 'N/A' : data?.courseCount}}</td>
+          <td>
+            {{ data?.userCount == null ? 'N/A' : data?.userCount }}
+          </td>
+          <td>
+            <div class="invisible lms-threedots">
+              <app-three-dots-menu
+                [threeDotsMenu]="threeDotMenOption"
+              >
+              {{data.id}}
+            </app-three-dots-menu>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container
+        *ngIf="
+          TableType == commonService.TextEnums.SUPER_ADMIN_SKILL_MANAGEMENT
+        "
+      >
+        <tr *ngFor="let data of TableTBodyArray">
+          <td class="!font-medium">
+            <div class="flex gap-1">
+              {{ data?.id }}
+            </div>
+          </td>
+          <td class="!text-r_color_secondary-900 !font-medium">{{ data?.name }}</td>
+          <td>{{data?.enrolledUser}}</td>
+          <td>{{data?.addedOn}}</td>
+        </tr>
+      </ng-container>
+      <ng-container
+        *ngIf="TableType == commonService.TextEnums.SUPER_ADMIN_COURSE"
+      >
+        <tr *ngFor="let data of TableTBodyArray">
+          <td>
+            <input
+              type="checkbox"
+              class="w-4 h-4 rounded border border-r_color_secondary-300 bg-r_color_base"
+            />
+          </td>
+          <td class="!text-r_color_secondary-900 !font-medium">
+            <div class="flex gap-1">
+              <p>{{ data?.name }}</p>
+            </div>
+          </td>
+          <td>{{ "Construction" }}</td>
+          <td>{{ data?.organisation_count }}</td>
+          <td>{{ data?.organisation_count }}</td>
+          <td>{{ data?.available_till }}</td>
+          <td>
+            <div
+              class="flex justify-center w-20 items-center gap-2 px-1 py-1 bg-green-100 rounded-sm"
+            >
+              <div class="rounded-full bg-green-400 w-2 h-2"></div>
+              <div class="text-xs font-normal text-green-800">
+                <p>Active</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="text-primary-color-600 text-sm font-normal">Assign</div>
+          </td>
+          <td>
+            <div class=" lms-threedots">
+              <app-three-dots-menu
+                [threeDotsMenu]="threeDotMenOption"
+              ></app-three-dots-menu>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container
+      *ngIf="TableType == commonService.TextEnums.COMPANY_ADMIN_GROUPS"
+    >
+      <tr *ngFor="let data of TableTBodyArray">
+        <td>
+          <input
+            type="checkbox"
+            class="w-4 h-4 rounded border border-r_color_secondary-300 bg-r_color_base"
+          />
+        </td>
+        <td class="!text-r_color_secondary-900 !font-medium">
+          <div class="flex gap-1">
+            <p>{{ data?.name }}</p>
+          </div>
+        </td>
+        <td>{{ "Construction" }}</td>
+        <td>{{ data?.organisation_count }}</td>
+        <td>{{ data?.organisation_count }}</td>
+        <td>{{ data?.available_till }}</td>
+        <td>
+          <div
+            class="flex justify-center w-20 items-center gap-2 px-1 py-1 bg-green-100 rounded-sm"
+          >
+            <div class="rounded-full bg-green-400 w-2 h-2"></div>
+            <div class="text-xs font-normal text-green-800">
+              <p>Active</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="text-primary-color-600 text-sm font-normal">Assign</div>
+        </td>
+        <td>
+          <div class="invisible lms-threedots">
+            <app-three-dots-menu
+              [threeDotsMenu]="threeDotMenOption"
+            ></app-three-dots-menu>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+  <!-- <div class="flex items-center justify-between w-full">
+    <div class="text-r_color_secondary-700 text-sm font-medium">
+      <p>Showing 1 to 10 of 20 results</p>
+    </div>
+    <div class="flex items-center gap-4">
+      <button
+        type="button"
+        class="px-4 py-2 border rounded-md border-r_color_secondary-300 shadow-sm text-sm text-r_color_secondary-700 font-medium"
+      >
+        Previous
+      </button>
+      <button
+        type="button"
+        class="px-4 py-2 border rounded-md border-r_color_secondary-300 shadow-sm text-sm text-r_color_secondary-700 font-medium"
+      >
+        Next
+      </button>
+    </div>
+  </div> -->
+</div>

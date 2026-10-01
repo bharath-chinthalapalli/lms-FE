@@ -1,0 +1,26 @@
+.wf-sidebar {
+  @apply bg-[url('../../../../assets/images//sidenavbar-layer.svg')];
+}
+
+.sidebar {
+  @apply flex flex-col;
+  li {
+    @apply cursor-pointer flex items-center gap-3 p-3  text-r_color_secondary-500 text-base font-normal;
+
+    &.active {
+      @apply text-primary-color-600 bg-primary-color-50 font-semibold;
+    }
+  }
+  li:hover {
+    @apply text-r_color_secondary-600 font-semibold hover:bg-r_color_secondary-50;
+    .sidebar-icon {
+      @apply text-r_color_secondary-600 font-semibold;
+    }
+  }
+}
+
+.sidebar_bg{
+  background: rgba(255, 255, 255, 0.56);
+box-shadow: 0px 0px 20px 0px rgba(156, 163, 175, 0.06);
+backdrop-filter: blur(25px);
+}

@@ -1,0 +1,46 @@
+{
+  "root": true,
+
+  "overrides": [
+    {
+      "files": ["*.ts"],
+
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+
+        "tsconfigRootDir": ""
+      },
+
+      "parser": "@typescript-eslint/parser",
+
+      "plugins": ["@typescript-eslint"],
+
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "error",
+
+        "@typescript-eslint/no-extra-semi": "error", // This rule flags unnecessary or extra semicolons in your code. It helps prevent syntax errors and ensures cleaner code.
+
+        "no-multiple-empty-lines": "error", //This rule disallows multiple consecutive empty lines in your code. It promotes readability by keeping empty lines to a minimum.
+
+        "eqeqeq": "error", // This rule requires strict equality (=== and !==) instead of loose equality (== and !=). It helps prevent type coercion-related bugs and encourages safer comparisons.
+
+        "no-console": "error", //This rule warns against the use of console.log () and other console methods. It encourages using a more structured logging approach and can help catch accidental debug statements in production code.
+
+        "no-debugger": "error", // This rule disallows the use of debugger statements in your code. It helps ensure that debugging statements are not left accidentally in the production code.
+
+        "@typescript-eslint/no-shadow": "error" // this rule disallow variable declarations from shadowing variables declared in the outer scope
+      },
+
+      "env": {
+        "browser": true,
+
+        "es2021": true
+      }
+    }
+  ]
+}

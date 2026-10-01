@@ -1,0 +1,45 @@
+<div class="generic_newoverlay !z-[9999999]">
+  <div
+    class="overflow-y-auto bg-gray-900/75 overflow-x-hidden fixed top-0 right-0 left-0 z-50 mx-auto w-full md:inset-0 h-modal md:h-full">
+    <div class="p-3.5 rounded-md relative transition-all w-auto pointer-events-none">
+      <div
+        class="border-none rounded-3xl relative flex flex-col mx-auto mt-[12rem] w-[25%] px-6 py-8 bg-white pointer-events-auto bg-clip-padding shadow-xl outline-none text-current">
+        <div>
+          <div class="modal-header flex-shrink-0 text-center p-2 border--200 rounded-t-md">
+            <p class="text-['#121D54'] text-xl font-bold">Assign User</p>
+          </div>
+          <div class="modal-content overflow-y-auto">
+            <ng-container *ngIf="type == this._commonService.TextEnums.COMPANY_ADMIN_ASSIGN_USERS_FROM_GROUP_USER_CARD"
+              >
+              <div class="items-center grid grid-cols-2 gap-8  py-2 px-2 "
+                *ngFor="let item of getUserByAssignList;let i=index">
+                <div class="flex items-center gap-2" *ngIf="getUserByAssignList.length> 0">
+                  <input type="checkbox"
+                        (change)="onCheckboxChange($event, i)"
+                        [checked]="item.isAssigned" name="" id=""
+                        [id]="'settings'+item.id" 
+                        [value]="'settings'+i ">
+                  <p class="text-gray-900 text-sm font-medium uppercase">{{item.name}}</p>
+                </div>
+                <p class="text-gray-500 text-sm font-normal text-left">{{item.skill}}</p>
+              </div>
+            </ng-container>
+
+          </div>
+          <div class="flex flex-col gap-6 my-5  mb-0 justify-end ">
+            <div class="flex gap-2 justify-end mx-0">
+              <button type="button" (click)="close()"
+               class="text-gray-600 px-4  font-bold  text-sm border-[1px] border-gray-600 rounded-md ">
+                Cancel
+              </button>
+              <button type="button" class="bg-primary-color-700 py-3 text-xs px-6 text-white font-bold rounded-md" 
+              (click)="save()">
+                {{ btntext }}
+              </button>
+            </div>
+          </div> 
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>

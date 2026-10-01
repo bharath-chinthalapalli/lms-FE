@@ -1,0 +1,70 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="dash-sidebar">
+  <!-- Static sidebar for desktop -->
+  <div
+    class="hidden lg:inset-y-0 lg:flex lg:w-80 lg:flex-col wf-sidebar h-screen"
+  >
+    <div
+      class="flex grow flex-col gap-y-5 overflow-y-auto border-r px-6 py-4 border-gray-200 bg-white"
+    >
+      <div class="flex h-16 shrink-0 items-center">
+        <img
+          class="h-8 w-auto"
+          [src]="_commonService.Images.LOGO"
+          alt="my logo"
+        />
+      </div>
+      <nav class="sidebar">
+        <ul role="list" class="flex flex-1 flex-col gap-3">
+          <ng-container *ngFor="let sidebar of sideArray">
+            <ng-container *ngFor="let visible of sidebar.visibleFor">
+              <li
+                *ngIf="visible?.role == loginUser?.role"
+                [routerLinkActive]="['active']"
+                [routerLink]="visible.routerLink"
+              >
+                <a>
+                  <svg-icon
+                    [src]="sidebar?.svgIcon"
+                    [svgClass]="'sidebar-icon'"
+                  ></svg-icon>
+                </a>
+                {{ sidebar?.title }}
+              </li>
+            </ng-container>
+          </ng-container>
+        </ul>
+      
+        <div class="fixed bottom-0">
+          <div class="mb-9">
+            <app-banner-component></app-banner-component>
+          </div>
+
+          <li
+            class="mt-auto flex items-center justify-between border-t border-gray-200"
+            
+          >
+            <div>
+              <h1 class="text-sm font-medium text-r_color_secondary-700">
+                {{userName | splitAndCapitalize}}
+              </h1>
+              <p class="text-xs font-normal text-r_color_secondary-500">
+                {{roleName | splitAndCapitalize}}
+              </p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div>
+                <img [src]="_commonService.Images.CHANGE_PASSWORD_ICON " alt="logout icon" (click)="loadChangePasswordForm()"/>
+              </div>
+              <div>
+                <img [src]="_commonService.Images.LOG_OUT" alt="logout icon" (click)="logout()" />
+              </div>
+            </div>
+          </li>
+        
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

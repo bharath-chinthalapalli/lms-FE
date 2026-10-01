@@ -1,0 +1,134 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="grid-container">
+    <app-heading-description [heading]="'Dashboard'"
+        [description]="'Groups help in creating and adding users to courses easy'">
+    </app-heading-description>
+    <!-- <div class="cards-container commonCss grid grid-cols-3  gap-6">
+        <ng-container *ngFor="let app of dashboardStatusArray">
+          <app-dashboard-app-card
+            [image_url]="app.image_url"
+            [label]="app.name"
+            [value]="app.totalCourses"
+          ></app-dashboard-app-card>
+        </ng-container>
+    </div> -->
+    <div class="cards-container commonCss  grid lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-6" >
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="_commonService.Images.SUPER_ADMIN_APP_COURSE_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardStatusArray.purchasedCourse== dashboardStatusArray.purchasedCourse ? 'Purchased Courses' : dashboardStatusArray.purchasedCourse }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardStatusArray.purchasedCourse }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="_commonService.Images.SUPER_ADMIN_APP_COURSE_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardStatusArray.totalUser== dashboardStatusArray.totalUser ? 'Total Users' : dashboardStatusArray.totalUser }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardStatusArray.totalUser }}
+          </p>
+        </div>
+      </div>
+      <div class="bg-white rounded-md p-6 border border-r_color_secondary-200  flex items-center gap-4 mb-6" >
+        <img [src]="_commonService.Images.SUPER_ADMIN_APP_COURSE_ICON" alt="">
+        <div>
+          <p class="text-base font-normal text-r_color_secondary-500">
+            {{ dashboardStatusArray.certificationCompleted== dashboardStatusArray.certificationCompleted ? 'Certification Completed' : dashboardStatusArray.certificationCompleted }}
+          </p>
+          <p class="text-2xl font-extrabold text-r_color_secondary-700">
+            {{ dashboardStatusArray.certificationCompleted == null ? '0' : dashboardStatusArray.certificationCompleted }}
+          </p>
+        </div>
+      </div>
+    </div>  
+      
+    <div class="super-admin-cards ">
+        <h1 class="text-lg font-semibold text-r_color_secondary-700">
+          Trending Courses
+        </h1>
+        <div class="super-admin-card commonCss   gap-6">
+          <!-- <ng-container *ngFor="let cardData of trendingCardsArray">
+            <app-trending-courses
+            [image_url]="cardData.coverImage"
+            [tittle]="cardData.tittle"
+            [description]="cardData.description"
+            [tags]="cardData.tag"
+            [availableTill]="cardData.availableTill"
+              ></app-trending-courses>
+          </ng-container> -->
+          <div *ngFor="let item of trendingCardsArray"
+          class="bg-white flex flex-col rounded-b-lg shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.05)] relative lms-super-admin-card card mt-4">
+          <div class="absolute z-20 right-4 top-4 cursor-pointer  lms-threedots">
+            <!-- <app-three-dots-menu [threeDotsMenu]="threeDotsMenu"></app-three-dots-menu> -->
+            <ng-container>
+              <div *ngIf="item.isFavorite == true">
+                <img (click)="activeInactiveItme(item.id)" [src]="_commonService.Images.RATING_ACTIVE_ICON" alt="">
+              </div>
+              <div *ngIf="item.isFavorite == false">
+                <img (click)="activeInactiveItme(item.id)" [src]="_commonService.Images.RATING_ICON" alt="">
+              </div>
+            </ng-container>
+          </div>
+          <div>
+            <!-- <div class=" imageCard z-10 "></div> -->
+            <ng-container  *ngFor="let item11 of item.fileData">
+              <div>
+                <img [src]="item11.coverImage" alt="main-img" class="w-full max-h-56 object-cover rounded-t-lg" />
+              </div>
+              <div *ngIf="!item11.coverImage">
+                <img [src]="_commonService.Images.CARD_MAIN_IMAGES" alt=""
+                  class="w-full max-h-56 object-cover rounded-t-lg">
+              </div>
+            </ng-container>
+            <!-- <ng-container >
+              <div *ngIf="item.coverImage">
+                <img [src]="item.coverImage" alt="main-img"
+                class="w-full max-h-56 object-cover rounded-t-lg" /> 
+              </div>
+              <div *ngIf="!item.coverImage">
+                <img [src]="_commonService.Images.CARD_MAIN_IMAGES" alt=""
+                class="w-full max-h-56 object-cover rounded-t-lg" >
+              </div> 
+            </ng-container> -->
+          </div>
+          <div class="py-3 px-4 flex flex-col gap-3" >
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col gap-2">
+                <p class="text-green-700 font-medium text-sm">
+                  {{item.category}}
+                </p>
+                <h1 class="text-xl font-semibold text-r_color_secondary-900">
+                  {{ item.tittle }} 
+                </h1>
+                <p class="text-sm font-normal text-r_color_secondary-500">
+                  {{ item.description }}
+                </p>
+              </div>
+              <div>
+                <img [src]="_commonService.Images.OPEN_CARD" class="cursor-pointer" alt="">
+              </div>
+            </div>
+            <div class="flex items-center gap-3" *ngFor="let item2 of item.tag">
+              <div class="py-2 px-3 rounded text-r_color_secondary-700 text-sm font-medium bg-primary-color-50">
+                {{item2 == null ?  'N/A': item2}}
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <p class="text-sm font-normal text-r_color_secondary-500">
+                Available till:
+              </p>
+              <p class="text-base font-normal text-r_color_secondary-800">
+                {{item.availableTill}}
+              </p>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>

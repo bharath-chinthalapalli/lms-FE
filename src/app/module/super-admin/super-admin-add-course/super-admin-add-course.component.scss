@@ -1,0 +1,7 @@
+.lms-footer-add-course {
+  filter: drop-shadow(0px -10px 20px rgba(156, 163, 175, 0.1));
+}
+
+.form-control-course {
+  @apply h-10 w-full py-2 px-2 text-r_color_secondary-500 bg-r_color_secondary-50 border-b  focus:border-t-0  focus:border-t-transparent border-gray-300 text-sm font-normal rounded-md    placeholder:text-sm placeholder:text-r_color_secondary-500;
+}

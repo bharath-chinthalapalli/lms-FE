@@ -1,0 +1,46 @@
+export enum TextEnums {
+  SHOW_CARD_DETAILS = 'Show card details',
+  QUIZ_TEXT = 'Quiz Text',
+  CERTIFICATION = 'CERTIFICATION',
+  MY_COMPONIERS = 'MY_COMPANY',
+  SUPER_ADMIN_COURSE = 'SUPER ADMIN COURSE',
+  SUPER_ADMIN_ADD_ORGANISATION = 'Super Admin add Organisation',
+  CANCLE_TEXT = 'Cancle',
+  SUBMIT_TEXT = 'Submit',
+  SUPER_ADMIN_ORGANISATION = 'Super Admin Organisation',
+  SUPER_ADMIN_SKILL_MANAGEMENT = 'Super Admin Skill Management',
+  ASSIGN_TEXT = 'Assign',
+  CLOSE_TEXT = 'Close',
+  ADD_TEXT = 'Add',
+  CARD_VIEW = 'Card View',
+  TABLE_VIEW = 'Table View',
+  EDIT_TEXT = 'Edit',
+  MAKE_INACTIVE_TEXT = 'Make Inactive',
+  ACTIVE_INACTIVE_POPUP = 'InactiveActivePopup',
+  ADD_COURSE = 'Add Course',
+  COMPANY_ADMIN_GROUPS = 'Company Admin Groups',
+  COMPANY_ADMIN_USERS = 'Company Admin Users',
+  AVAILABLE_COURSES = 'Available Courses',
+  PURCHASED_COURSES = 'Purchased Courses',
+  FAVORITE_COURSES = 'Favorite Courses',
+  ASSIGN_USER = 'Assign User',
+  COMPANY_ADMIN_COURSES = 'Company Admin Users',
+  EDIT_USER= 'Edit',
+  COMPANY_ADMIN_ASSIGN_USERS = 'Company Admin Assign Users',
+  INVITE_USER = 'Invite User',
+  COMPANY_ADMIN_ASSIGN_USERS_FROM_GROUP_USER_CARD = 'Company Admin Assign Users From GRoup User Card'
+}
+
+export enum SideBarRoutes {
+  DASHBOARD_ROUTES = 'dashboard',
+  CERTIFICATION_ROUTES = 'certification',
+  MY_COMPONIERS_ROUTES = 'my-companies',
+  COURSES_ROUTES = 'courses',
+  ORGANISATIONS_ROUTES = 'organisation',
+  SKILL_MANAGEMENT = 'skill-management',
+  COMPANY_ADMIN_DASHBOARD='company-admin-dashboard',
+  COMPANY_ADMIN_COURSES = 'company-admin-courses',
+  COMPANY_ADMIN_USERS = 'company-admin-users',
+  COMPANY_ADMIN_GROUPS = 'company-admin-groups'
+
+}
